@@ -38,6 +38,8 @@ evidencias/         Captura del reporte de cobertura
 
 ## Especificación (reglas de negocio)
 
+.
+
 ### Módulo `eta.ts`
 
 **`calcularMinutosEstimados(velocidadKmh, distanciaRestanteKm, factorTrafico): number | null`**

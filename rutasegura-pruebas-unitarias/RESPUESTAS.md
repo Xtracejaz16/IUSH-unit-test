@@ -31,7 +31,7 @@ Respondan cada pregunta con base en SUS pruebas (citen el nombre del `it` cuando
 
 **1.** Para `calcularMinutosEstimados`, ¿qué valores de entrada escogieron para el caso feliz y por qué esos y no otros? ¿Qué demuestra esa prueba y qué NO demuestra?
 
-Escogimos 40 km/h, 10 km y factor 1.5, que según el README da 23 minutos. Elegimos esos valores porque usan factor de tráfico mayor a 1.0, así la prueba demuestra que el tráfico aumenta el tiempo. No demuestra que funcione con factor 1.0 ni con los casos de error (velocidad negativa, factor fuera de rango, etc.).
+Escogimos 40 km/h, 10 km y factor 1.5, que según el README da 23 minutos. Elegimos esos valores porque usan factor de tráfico mayor a 1.0, así la prueba demuestra que el tráfico aumenta el tiempo. No demuestra que funcione con factor 1.0 ni con los casos de error (velocidad negativa, factor fuera de rango, etc...)
 
 **2.** Tomen su prueba de caso feliz de RN-01 y cambien únicamente el dato `factorTrafico` a `1.0` (ajustando el valor esperado según la fórmula). ¿Cambia el resultado de la prueba (pasa / falla)? ¿Qué les enseña esto sobre la selección de datos de prueba?
 
