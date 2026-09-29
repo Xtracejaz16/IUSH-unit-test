@@ -16,3 +16,5 @@ describe('RN-07 esPlacaValida', () => {
     expect(resultado).toBe(true);
   });
 });
+
+
