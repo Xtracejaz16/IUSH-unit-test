@@ -6,15 +6,15 @@ Integrantes:
 
 ## Resumen de la ejecución
 
-La suite completa tiene **67 pruebas**: **58 pasan y 9 fallan**. Las 9 pruebas fallidas no representan 9 defectos independientes: están causadas por **4 causas raíz**, correspondientes a RN-01, RN-06, RN-08 y RN-11.
+La suite integrada tiene **66 pruebas**: **58 pasan y 8 fallan**. Las 8 pruebas fallidas no representan 8 defectos independientes: están causadas por **4 causas raíz**, correspondientes a RN-01 / ETA, RN-06, RN-08 y RN-11.
 
 | Defecto raíz | Regla incumplida | Pruebas afectadas |
 |---|---|---:|
-| DEF-01 | RN-01 | 5 |
+| DEF-01 | RN-01 / ETA | 4 |
 | DEF-02 | RN-06 | 2 |
 | DEF-03 | RN-08 | 1 |
 | DEF-04 | RN-11 | 1 |
-| **Total** | **4 causas raíz** | **9 pruebas fallidas** |
+| **Total** | **4 causas raíz** | **8 pruebas fallidas** |
 
 ---
 
@@ -24,21 +24,20 @@ La suite completa tiene **67 pruebas**: **58 pasan y 9 fallan**. Las 9 pruebas f
 |---|---|
 | Regla incumplida (RN-XX) | RN-01. La misma causa también afecta la prueba de límite superior de RN-04 y el cálculo de hora de RN-05. |
 | Función | `calcularMinutosEstimados` y, de forma indirecta, `calcularHoraEstimadaLlegada` |
-| Cantidad de pruebas afectadas | 5 |
+| Cantidad de pruebas afectadas | 4 |
 | Severidad (Alta / Media / Baja) y por qué | Alta, porque el acudiente ve un tiempo de llegada mucho menor cuando hay más tráfico. |
 | Causa probable en el código (línea / condición) | `src/eta.ts`, línea 38: divide por `factorTrafico` en vez de multiplicar. Debería ser `minutosSinTrafico * factorTrafico`. |
 
-Las cinco pruebas fallidas de este defecto son:
+Las cuatro pruebas fallidas de este defecto son:
 
 | Prueba (nombre exacto del `it`) | Datos de entrada | Resultado esperado según README | Resultado obtenido |
 |---|---|---|---|
-| `calcularMinutosEstimados_con50kmh60kmFactor1_4_debeRetornar101` | `velocidadKmh = 50`, `distanciaRestanteKm = 60`, `factorTrafico = 1.4` | **101 minutos**: `(60 / 50) × 60 × 1.4 = 100.8`, redondeado hacia arriba | **52 minutos** |
+| `calcularMinutosEstimados_con40kmh10kmFactor1_5_debeRetornar23` | `velocidadKmh = 40`, `distanciaRestanteKm = 10`, `factorTrafico = 1.5` | **23 minutos**: `(10 / 40) × 60 × 1.5 = 22.5`, redondeado hacia arriba | **10 minutos** |
 | `calcularMinutosEstimados_con60kmh20kmFactor1_2_debeRetornar24` | `velocidadKmh = 60`, `distanciaRestanteKm = 20`, `factorTrafico = 1.2` | **24 minutos**: `(20 / 60) × 60 × 1.2 = 24` | **17 minutos** |
-| `calcularMinutosEstimados_conFactorMayor_debeAumentarElTiempo` | `velocidadKmh = 40`, `distanciaRestanteKm = 10`, `factorTrafico = 2.0` | **30 minutos**: `(10 / 40) × 60 × 2.0 = 30` | **8 minutos** |
 | `calcularMinutosEstimados_conFactorEnLimiteSuperior_debeCalcular` | `velocidadKmh = 60`, `distanciaRestanteKm = 60`, `factorTrafico = 3.0` | **180 minutos**: `(60 / 60) × 60 × 3.0 = 180` | **20 minutos** |
 | `calcularHoraEstimadaLlegada_conDatosNormales_debeSumarMinutosAHoraActual` | `velocidadKmh = 40`, `distanciaRestanteKm = 10`, `factorTrafico = 1.5`, `horaActual = 06:30` | **06:53**: RN-01 produce 23 minutos y se suman a la hora actual | **06:40** |
 
-La falla visible es que el sistema estima menos tiempo cuando aumenta el tráfico. Por ejemplo, el acudiente puede salir tarde porque la aplicación muestra 8 minutos en lugar de 30. En RN-05, la hora de llegada también queda adelantada porque reutiliza el cálculo incorrecto.
+La falla visible es que el sistema estima menos tiempo cuando aumenta el tráfico. Por ejemplo, el acudiente puede salir tarde porque la aplicación muestra 10 minutos en lugar de 23. En RN-05, la hora de llegada también queda adelantada porque reutiliza el cálculo incorrecto.
 
 ---
 
@@ -101,4 +100,4 @@ La falla visible es que un acudiente que desactivó los avisos continúa recibie
 
 ## Conclusión
 
-El reporte conserva cuatro defectos raíz y deja trazabilidad de las nueve pruebas fallidas: cinco por el cálculo de ETA y una causa para cada uno de los otros tres casos. Las pruebas se mantienen fallando porque, según el README, el código fuente no debe modificarse; el fallo es el hallazgo que debe corregirse en el producto.
+El reporte conserva cuatro defectos raíz y deja trazabilidad de las ocho pruebas fallidas: cuatro por el cálculo de ETA y una causa para cada uno de los otros tres casos. Las pruebas se mantienen fallando porque, según el README, el código fuente no debe modificarse; el fallo es el hallazgo que debe corregirse en el producto.
