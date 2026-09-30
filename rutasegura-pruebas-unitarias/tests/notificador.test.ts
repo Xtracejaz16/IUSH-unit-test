@@ -1,6 +1,5 @@
 import { NotificadorAcudientes, ServicioMensajeria, Acudiente } from '../src/notificador';
 
-// AJUSTAR si en src/notificador.ts la interfaz Acudiente tiene otros nombres de campo
 const crearAcudiente = (telefono: string, activas: boolean): Acudiente => ({
   nombre: 'Acudiente ' + telefono,
   telefono,

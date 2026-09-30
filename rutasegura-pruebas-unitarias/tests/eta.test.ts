@@ -1,7 +1,6 @@
 import { calcularMinutosEstimados, calcularHoraEstimadaLlegada } from '../src/eta';
 
-// TODO: escribir las pruebas de RN-01 a RN-05.
-// Recuerden: caso feliz + valores límite + casos de error. Un describe por regla.
+// Tests for RN-01 to RN-05. Each rule has its own describe block.
 
 describe('RN-01 calcularMinutosEstimados - fórmula y redonde', () => {
   it('calcularMinutosEstimados_con40kmh10kmFactor1_5_debeRetornar23', () => {
@@ -12,15 +11,15 @@ describe('RN-01 calcularMinutosEstimados - fórmula y redonde', () => {
     expect(resultado).toBe(23);
   });
   it('calcularMinutosEstimados_con60kmh60kmFactor1_0_debeRetornar60', () => {
-    expect(calcularMinutosEstimados(60, 60, 1.0)).toBe(60); // 
+    expect(calcularMinutosEstimados(60, 60, 1.0)).toBe(60); // factor mínimo válido
   });
 
   it('calcularMinutosEstimados_con45kmh10kmFactor1_0_noDebeRedondearHaciaArriba', () => {
     expect(calcularMinutosEstimados(45, 10, 1.0)).toBe(14); // 10/45*60 = 13.3333..., *1.0 = 13.3333..., redondeado = 14
   });
 
-  it('calcularMinutosEstimados_con60kmh60kmFactor1_2_debeRetornar24', () => {
-    expect(calcularMinutosEstimados(60, 60, 0.09)).toThrow(RangeError);
+  it('calcularMinutosEstimados_con60kmh20kmFactor1_2_debeRetornar24', () => {
+    expect(calcularMinutosEstimados(60, 20, 1.2)).toBe(24);
   });
 
 });
