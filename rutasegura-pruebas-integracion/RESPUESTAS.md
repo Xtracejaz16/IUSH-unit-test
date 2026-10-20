@@ -25,7 +25,9 @@ Ambos son piezas **falsas** que usamos porque la pieza real no existe o no convi
 
 Frase: *«El stub está **debajo** del módulo bajo prueba (lo llaman a él) y el driver está **encima** (él llama al módulo)».* Analogía: en un restaurante, el **driver** es el mesero de prueba que le pide platos al cocinero; el **stub** es el proveedor falso que le entrega al cocinero ingredientes siempre iguales.
 
-El arreglo `llamadas` del stub sirve para verificar **interacciones**: no solo qué retornó `MonitorRuta`, sino **a quién consultó**. Por ejemplo, `monitorear_conPlacaInvalida_debeRetornarPlacaInvalidaSinConsultarGPS` comprueba `expect(gps.llamadas).toHaveLength(0)`: el reporte puede decir `PLACA_INVALIDA` y aun así estar mal hecho si primero hubiera gastado una consulta al GPS. (Esa es la diferencia entre un stub «puro» y un mock.)
+El arreglo `llamadas` del stub sirve para verificar **interacciones**: no solo qué retornó `MonitorRuta`, sino **a quién consultó**. Por ejemplo, `monitorear_conPlacaInvalida_debeRetornarPlacaInvalidaSinConsultarGPS` comprueba `expect(gps.llamadas).toHaveLength(0)`: el reporte puede decir `PLACA_INVALIDA` y aun así estar mal hecho si primero hubiera gastado una consulta al GPS.
+
+Un stub «puro» solo entrega respuestas y no anota nada. Un mock, además, **anota cómo lo llamaron** y la prueba lo verifica. Nuestros stubs entregan respuestas y además guardan las llamadas; cuando la prueba revisa `gps.llamadas`, el stub se está usando como **mock**.
 
 **2.** Todos los módulos de `src/` pasaron sus pruebas unitarias en el taller anterior. ¿Por qué aun así pueden aparecer defectos al integrarlos? Den un ejemplo que hayan encontrado.
 
