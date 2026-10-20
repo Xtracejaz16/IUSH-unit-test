@@ -1,0 +1,22 @@
+{
+  "name": "rutasegura-pruebas-integracion",
+  "version": "1.1.0",
+  "description": "Taller de pruebas de integración (stubs y drivers) - ASCAS12 - Caso RutaSegura",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:topdown": "jest tests/top-down",
+    "test:bottomup": "jest tests/bottom-up",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "driver": "ts-node tests/drivers/driverConsola.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
